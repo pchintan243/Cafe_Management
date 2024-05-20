@@ -1,2 +1,2 @@
-.vscode/launch.json
+.vscode/
 server/src/main/resources/application.properties

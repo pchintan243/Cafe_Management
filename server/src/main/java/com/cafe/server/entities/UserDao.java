@@ -1,4 +1,4 @@
-package com.cafe.server.dao;
+package com.cafe.server.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
