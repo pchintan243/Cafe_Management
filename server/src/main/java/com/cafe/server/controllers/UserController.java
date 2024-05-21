@@ -10,10 +10,15 @@ import com.cafe.server.services.UserService;
 
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
@@ -46,6 +51,18 @@ public class UserController {
         }
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/getAllUser")
+    public ResponseEntity<List<User>> getAllUser() {
+        List<User> userList = userService.getAllUser();
+        return new ResponseEntity<>(userList, HttpStatus.OK);
+    }
+
+    @PutMapping("/user/updateStatus/{id}")
+    public ResponseEntity<Void> updateStatus(@PathVariable int id) {
+        userService.updateStatus(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
