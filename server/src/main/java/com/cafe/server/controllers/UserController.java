@@ -2,6 +2,7 @@ package com.cafe.server.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cafe.server.entities.ChangePassword;
 import com.cafe.server.entities.JwtResponse;
 import com.cafe.server.entities.Login;
 import com.cafe.server.entities.User;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @SecurityRequirement(name = "BearerAuth")
@@ -63,6 +65,25 @@ public class UserController {
     public ResponseEntity<Void> updateStatus(@PathVariable int id) {
         userService.updateStatus(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/user/forgotPassword")
+    public ResponseEntity<Login> forgotPassword(@RequestParam String email) {
+        Login user = userService.forgotPassword(email);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+    }
+
+    @PostMapping("/user/changePassword")
+    public ResponseEntity<User> changePassword(@RequestBody ChangePassword changePassword) {
+        User updatedUser = userService.changePassword(changePassword);
+        if (updatedUser != null) {
+            return ResponseEntity.ok(updatedUser);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
 }

@@ -48,6 +48,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/user/login").permitAll()
                         .requestMatchers("/user/signup").permitAll()
+                        .requestMatchers("/user/forgotPassword").permitAll()
                         .requestMatchers("/api/getAllUser").hasAnyAuthority("admin")
                         .requestMatchers("/user/updateStatus/**").hasAnyAuthority("admin")
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**")
