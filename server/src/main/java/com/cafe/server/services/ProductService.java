@@ -64,4 +64,13 @@ public class ProductService {
             productRepository.delete(product);
         }
     }
+
+    // Get product by category id
+    public List<Product> getProductById(int id) {
+        Category byId = categoryRepository.findById(id);
+        if (byId != null) {
+            return productRepository.findByCategoryId(id);
+        }
+        return null;
+    }
 }
