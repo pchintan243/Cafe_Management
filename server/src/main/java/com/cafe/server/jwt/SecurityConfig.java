@@ -51,6 +51,7 @@ public class SecurityConfig {
                         .requestMatchers("/user/forgotPassword").permitAll()
                         .requestMatchers("/category/**").hasAnyAuthority("admin")
                         .requestMatchers("/product/**").hasAnyAuthority("admin")
+                        .requestMatchers("/bill/**").hasAnyAuthority("admin")
                         .requestMatchers("/api/getAllUser").hasAnyAuthority("admin")
                         .requestMatchers("/user/updateStatus/**").hasAnyAuthority("admin")
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**")
